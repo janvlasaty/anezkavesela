@@ -18,7 +18,7 @@ export function Header() {
     <header className="header">
       <div className="header-container">
         <Link to="/" className="logo">
-          <span className="logo-text">AV</span>
+          <img src={`${import.meta.env.BASE_URL}logo.svg`} alt="AV" className="logo-img" />
         </Link>
 
         <nav className="nav">

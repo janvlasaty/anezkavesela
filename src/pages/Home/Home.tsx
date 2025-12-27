@@ -3,12 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
-// Placeholder images - replace with actual dance photos
+// Background images for hero carousel
 const backgroundImages = [
-  'https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=1920&q=80',
-  'https://images.unsplash.com/photo-1547153760-18fc86324498?w=1920&q=80',
-  'https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=1920&q=80',
-  'https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=1920&q=80',
+  `${import.meta.env.BASE_URL}images/hero-1.webp`,
+  `${import.meta.env.BASE_URL}images/hero-2.webp`,
+  `${import.meta.env.BASE_URL}images/hero-3.webp`,
+  `${import.meta.env.BASE_URL}images/hero-4.webp`,
+  `${import.meta.env.BASE_URL}images/hero-5.webp`,
 ];
 
 export function Home() {
@@ -42,7 +43,8 @@ export function Home() {
         <div className="hero-overlay" />
         
         <div className="hero-content">
-          <h1 className="hero-title">{t('home.title')}</h1>
+          <img src={`${import.meta.env.BASE_URL}logo.svg`} alt="AV" className="hero-logo" />
+          <h1 className="hero-title">Anežka Veselá</h1>
           <p className="hero-subtitle">{t('home.subtitle')}</p>
           <Link to="/about" className="hero-cta">
             {t('home.cta')}
