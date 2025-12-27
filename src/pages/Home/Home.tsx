@@ -15,20 +15,24 @@ const backgroundImages = [
 export function Home() {
   const { t } = useTranslation();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [previousImageIndex, setPreviousImageIndex] = useState<number | null>(null);
 
   const nextImage = useCallback(() => {
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
-      setIsTransitioning(false);
-    }, 500);
-  }, []);
+    setPreviousImageIndex(currentImageIndex);
+    setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+  }, [currentImageIndex]);
 
   useEffect(() => {
     const interval = setInterval(nextImage, 5000);
     return () => clearInterval(interval);
   }, [nextImage]);
+
+  const handleIndicatorClick = (index: number) => {
+    if (index !== currentImageIndex) {
+      setPreviousImageIndex(currentImageIndex);
+      setCurrentImageIndex(index);
+    }
+  };
 
   return (
     <div className="home">
@@ -36,7 +40,7 @@ export function Home() {
         {backgroundImages.map((img, index) => (
           <div
             key={img}
-            className={`hero-bg ${index === currentImageIndex ? 'active' : ''} ${isTransitioning ? 'transitioning' : ''}`}
+            className={`hero-bg ${index === currentImageIndex ? 'active' : ''} ${index === previousImageIndex ? 'previous' : ''}`}
             style={{ backgroundImage: `url(${img})` }}
           />
         ))}
@@ -56,7 +60,7 @@ export function Home() {
             <button
               key={index}
               className={`indicator ${index === currentImageIndex ? 'active' : ''}`}
-              onClick={() => setCurrentImageIndex(index)}
+              onClick={() => handleIndicatorClick(index)}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
