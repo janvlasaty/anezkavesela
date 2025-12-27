@@ -1,0 +1,12 @@
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+  color: #fff;
+}
+
+.main {
+  flex: 1;
+  padding-top: 80px; /* Account for fixed header */
+}

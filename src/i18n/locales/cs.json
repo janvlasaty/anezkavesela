@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "home": "Domů",
+    "about": "O mně",
+    "schedule": "Rozvrh",
+    "contact": "Kontakt"
+  },
+  "home": {
+    "title": "Anežka Veselá",
+    "subtitle": "Tanec & Fitness",
+    "cta": "Více o mně"
+  },
+  "about": {
+    "title": "O mně",
+    "loading": "Načítání..."
+  },
+  "schedule": {
+    "title": "Rozvrh",
+    "loading": "Načítání...",
+    "regularClasses": "Pravidelné lekce",
+    "upcomingEvents": "Nadcházející události"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "loading": "Načítání...",
+    "getInTouch": "Spojte se se mnou"
+  },
+  "footer": {
+    "rights": "Všechna práva vyhrazena",
+    "followMe": "Sledujte mě"
+  },
+  "language": {
+    "cs": "Čeština",
+    "en": "English"
+  }
+}

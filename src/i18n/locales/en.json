@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "schedule": "Schedule",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Anežka Veselá",
+    "subtitle": "Dance & Fitness",
+    "cta": "Learn more"
+  },
+  "about": {
+    "title": "About Me",
+    "loading": "Loading..."
+  },
+  "schedule": {
+    "title": "Schedule",
+    "loading": "Loading...",
+    "regularClasses": "Regular Classes",
+    "upcomingEvents": "Upcoming Events"
+  },
+  "contact": {
+    "title": "Contact",
+    "loading": "Loading...",
+    "getInTouch": "Get in touch"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "followMe": "Follow me"
+  },
+  "language": {
+    "cs": "Čeština",
+    "en": "English"
+  }
+}
