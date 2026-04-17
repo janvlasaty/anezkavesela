@@ -66,9 +66,7 @@ export function Home() {
           ))}
         </div>
 
-        <div className="scroll-indicator">
-          <div className="scroll-arrow" />
-        </div>
+        <div className="scroll-indicator">⌄</div>
       </div>
     </div>
   );

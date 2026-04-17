@@ -1,34 +1,370 @@
-.schedule {
-  min-height: calc(100vh - 80px);
-  padding: 4rem 2rem;
+/* ================================================================
+   LEKCE (Schedule) – revamp
+   ================================================================ */
+
+.lekce {
+  overflow-x: hidden;
 }
 
-.schedule-container {
-  max-width: 900px;
+/* ── Hero ─────────────────────────────────────────────────────── */
+
+.lekce-hero {
+  position: relative;
+  background: #000;
+  padding: 9rem 4rem 7rem;
+  overflow: hidden;
+}
+
+.lekce-hero__bg {
+  position: absolute;
+  top: 50%;
+  right: -2%;
+  transform: translateY(-50%);
+  font-size: clamp(8rem, 22vw, 22rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.lekce-hero__inner {
+  position: relative;
+  max-width: 820px;
   margin: 0 auto;
 }
 
-.page-loading,
-.page-error {
+.lekce-hero__label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 1.5rem;
+}
+
+.lekce-hero__title {
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+/* SVG brand glyph — large, left side */
+.lekce-hero__glyph {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: clamp(340px, 90vh, 820px);
+  width: auto;
+  filter: invert(1);
+  opacity: 0.15;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
+.lekce-hero__desc {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 500px;
+}
+
+/* ── Cards list ───────────────────────────────────────────────── */
+
+.lekce-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Single card ──────────────────────────────────────────────── */
+
+.lekce-card {
+  padding: 5rem 4rem;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 0;
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.lekce-card--light {
+  background: #fff;
+  color: #000;
+}
+
+.lekce-card--dark {
+  background: #000;
+  color: #fff;
+}
+
+/* Card head */
+.lekce-card__head {
+  margin-bottom: 2.5rem;
+}
+
+.lekce-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.lekce-card__tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.lekce-card--light .lekce-card__tag { color: rgba(0, 0, 0, 0.4); }
+.lekce-card--dark  .lekce-card__tag { color: rgba(255, 255, 255, 0.35); }
+
+.lekce-card__num {
+  font-size: clamp(4rem, 8vw, 7rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  user-select: none;
+}
+
+.lekce-card--light .lekce-card__num { color: rgba(0, 0, 0, 0.06); }
+.lekce-card--dark  .lekce-card__num { color: rgba(255, 255, 255, 0.06); }
+
+.lekce-card__name {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.lekce-card__desc {
+  font-size: 1rem;
+  line-height: 1.8;
+  max-width: 620px;
+}
+
+.lekce-card--light .lekce-card__desc { color: rgba(0, 0, 0, 0.65); }
+.lekce-card--dark  .lekce-card__desc { color: rgba(255, 255, 255, 0.6); }
+
+/* Divider */
+.lekce-card__divider {
+  height: 1px;
+  margin-bottom: 2.5rem;
+}
+
+.lekce-card--light .lekce-card__divider { background: rgba(0, 0, 0, 0.1); }
+.lekce-card--dark  .lekce-card__divider { background: rgba(255, 255, 255, 0.08); }
+
+/* Card body */
+.lekce-card__section-label {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.lekce-card--light .lekce-card__section-label { color: rgba(0, 0, 0, 0.35); }
+.lekce-card--dark  .lekce-card__section-label { color: rgba(255, 255, 255, 0.3); }
+
+/* ── Sessions ─────────────────────────────────────────────────── */
+
+.sessions {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.session-row {
+  display: grid;
+  grid-template-columns: 100px 160px 1fr 140px 28px;
+  align-items: center;
+  gap: 0 1.5rem;
+  padding: 1.1rem 0;
+  text-decoration: none;
+  border-bottom: 1px solid;
+  transition: background 0.2s ease, padding-left 0.2s ease;
+  cursor: pointer;
+}
+
+.session-row:first-child {
+  border-top: 1px solid;
+}
+
+.lekce-card--light .session-row {
+  color: #000;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.lekce-card--dark .session-row {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+.lekce-card--light .session-row:hover { background: rgba(0, 0, 0, 0.03); padding-left: 0.75rem; }
+.lekce-card--dark  .session-row:hover { background: rgba(255, 255, 255, 0.03); padding-left: 0.75rem; }
+
+.session-row__day {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.session-row__time {
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.lekce-card--light .session-row__time { color: rgba(0, 0, 0, 0.55); }
+.lekce-card--dark  .session-row__time { color: rgba(255, 255, 255, 0.5); }
+
+.session-row__studio {
+  font-size: 0.85rem;
+}
+
+.session-row__location {
+  font-size: 0.78rem;
+  text-align: right;
+}
+
+.lekce-card--light .session-row__location { color: rgba(0, 0, 0, 0.45); }
+.lekce-card--dark  .session-row__location { color: rgba(255, 255, 255, 0.4); }
+
+.session-row__arrow {
+  font-size: 0.9rem;
+  text-align: right;
+  transition: transform 0.2s ease;
+}
+
+.lekce-card--light .session-row__arrow { color: rgba(0, 0, 0, 0.3); }
+.lekce-card--dark  .session-row__arrow { color: rgba(255, 255, 255, 0.3); }
+
+.session-row:hover .session-row__arrow {
+  transform: translate(3px, -3px);
+}
+
+/* ── Studio chips (no-session cards) ─────────────────────────── */
+
+.lekce-studios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.lekce-studio-chip {
+  padding: 0.3rem 0.85rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  border: 1px solid;
+}
+
+.lekce-card--light .lekce-studio-chip { border-color: rgba(0, 0, 0, 0.2); color: rgba(0, 0, 0, 0.7); }
+.lekce-card--dark  .lekce-studio-chip { border-color: rgba(255, 255, 255, 0.15); color: rgba(255, 255, 255, 0.65); }
+
+.lekce-card__note {
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+}
+
+.lekce-card--light .lekce-card__note { color: rgba(0, 0, 0, 0.5); }
+.lekce-card--dark  .lekce-card__note { color: rgba(255, 255, 255, 0.45); }
+
+/* ── Bottom CTA ───────────────────────────────────────────────── */
+
+.lekce-cta-section {
+  background: #000;
+  padding: 7rem 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 50vh;
-  gap: 1rem;
+  gap: 2.5rem;
+  text-align: center;
 }
 
-.loader {
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(255, 255, 255, 0.1);
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+.lekce-cta-text {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.6);
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
+/* matches hero-cta from Home exactly */
+.lekce-cta-btn {
+  display: inline-block;
+  padding: 1rem 3rem;
+  border: 2px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.lekce-cta-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* ================================================================
+   SCROLL REVEAL
+   ================================================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+  transition-delay: var(--delay, 0s);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+@media (max-width: 900px) {
+  .lekce-hero {
+    padding: 6rem 2rem 4rem;
+  }
+
+  .lekce-card {
+    padding: 3.5rem 2rem;
+  }
+
+  .session-row {
+    grid-template-columns: 90px 1fr 28px;
+    grid-template-rows: auto auto;
+  }
+
+  .session-row__time    { grid-column: 2; grid-row: 1; }
+  .session-row__studio  { grid-column: 1 / 3; grid-row: 2; font-size: 0.78rem; }
+  .session-row__location { display: none; }
+  .session-row__arrow   { grid-column: 3; grid-row: 1 / 3; align-self: center; }
+}
+
+@media (max-width: 480px) {
+  .lekce-hero {
+    padding: 5rem 1.5rem 3.5rem;
+  }
+
+  .lekce-card {
+    padding: 3rem 1.5rem;
+  }
+
+  .lekce-cta-section {
+    padding: 5rem 1.5rem;
   }
 }
